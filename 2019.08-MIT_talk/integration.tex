@@ -1,0 +1,115 @@
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{}
+  \begin{center}
+    \textbf{\Large Surprises in numerical integration }
+  \end{center}
+\end{frame}
+%------------------------------------------------------------------------
+
+%------------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Numerical integration\\
+  \csub{\small Illustrative example}}
+ \begin{tcolorbox}
+  \begin{equation*}
+    I = \int_{-1}^{1} dx \, e^{\pi x} 
+  \end{equation*}
+ \end{tcolorbox}
+ \pause
+  \textbf{Trapezoidal Rule}
+  \begin{equation*}
+    \int_{a}^{b} f(x) \, dx \simeq 
+    \Delta x \left[ \frac{1}{2} \, f(x_0) + f(x_1) + f(x_2) + f(x_3) +  \frac{1}{2}  \,f(x_4) \right]
+  \end{equation*}
+  \textbf{Simpson's Rule}
+  \begin{equation*}
+    \int_{a}^{b} f(x) \, dx \simeq 
+    \Delta x \left[ \frac{1}{3}  \,f(x_0) + \frac{4}{3}  \,f(x_1) + \frac{2}{3}  \,f(x_2)
+      + \frac{4}{3}  \,f(x_3) + \frac{1}{3}  \, f(x_4) \right]
+  \end{equation*}
+\end{frame}
+
+%------------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Numerical integration\\
+    \csub{\small Illustrative example}}
+ \begin{tcolorbox}
+  \begin{equation*}
+    I = \int_{-1}^{1} dx \, e^{\pi x} \simeq 7.352155820749956
+  \end{equation*}
+ \end{tcolorbox}
+  \begin{center}
+    \begin{tabular}{ccc} \hline
+      $n$ & $E_\mathrm{Trap}$ & $E_\mathrm{Simp}$ \\ \hline
+5 & 1.453 & 1.907 \tm{1} \pause \\
+7 & 6.599 \tm{1} & 4.337 \tm{2} \pause \\
+9 & 3.741 \tm{1} & 1.447 \tm{2} \pause \\
+11 & 2.403 \tm{1}  & 6.079 \tm{3} \pause \\
+13 & 1.672 \tm{1} & 2.973 \tm{3} \pause \\
+15 & 1.230 \tm{1} & 1.618 \tm{3} \pause \\
+101 & 2.419 \tm{3} & 6.363 \tm{7} \pause \\
+    \end{tabular}
+  \end{center}
+\end{frame}
+%------------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Numerical integration\\
+  \csub{\small Illustrative example}}
+ \begin{tcolorbox}
+  \begin{equation*}
+    I = \int_{-1}^{1} dx \, e^{\cos(\pi x)} 
+  \end{equation*}
+ \end{tcolorbox}
+ \pause
+  \textbf{Trapezoidal Rule} \textcolor{blue}{(periodic)}
+  \begin{equation*}
+    \int_{a}^{b} f(x) \, dx \simeq 
+    \Delta x \bigl[ \, \textcolor{blue}{f(x_0)} + f(x_1) + f(x_2) + f(x_3) \, \bigr]
+  \end{equation*}
+  \textbf{Simpson's Rule} \textcolor{blue}{(periodic)}
+  \begin{equation*}
+    \int_{a}^{b} f(x) \, dx \simeq 
+    \Delta x \left[ \textcolor{blue}{\frac{2}{3}  \,f(x_0)} + \frac{4}{3}  \,f(x_1) + \frac{2}{3}  \,f(x_2)
+      + \frac{4}{3}  \,f(x_3) \right]
+  \end{equation*}
+\end{frame}
+
+%------------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Numerical integration\\
+    \csub{\small Illustrative example}}
+ \begin{tcolorbox}
+  \begin{equation*}
+    I = \int_{-1}^{1} dx \, e^{\cos(\pi x)} \simeq 2.532131755504017
+  \end{equation*}
+ \end{tcolorbox}
+  \begin{center}
+    \begin{tabular}{ccc} \hline
+      $n$ & $E_\mathrm{Trap}$ & $E_\mathrm{Simp}$ \\ \hline
+5 & 1.095 \tm{2} & -1.701 \tm{1} \pause \\
+7 & 8.995 \tm{5} & 2.965 \tm{2} \pause \\
+9 & 3.984 \tm{7} & -3.649 \tm{3} \pause \\
+11 & 1.101 \tm{9} & 3.620 \tm{4} \pause \\
+13 & 2.077 \tm{12} & -2.998 \tm{5} \\
+    \end{tabular}
+  \end{center}
+\end{frame}
+%------------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{Numerical integration\\
+    \csub{\small Excellent Resource}}
+   \begin{beamercolorbox}[rounded=true,center,shadow=true]{banner}
+    L. Trefethen, \textit{The Exponentially Convergent Trapezoidal Rule},\\
+       SIAM Review \textbf{56} (2014) 385
+  \end{beamercolorbox}
+
+ \end{frame}
+%------------------------------------------------------------------------
+
+

@@ -1,0 +1,134 @@
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{}
+  \begin{center}
+    \textbf{\Large Waves and how to advect them }
+  \end{center}
+\end{frame}
+%------------------------------------------------------------------------
+
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{One-dimensional advection}
+  
+  \begin{center}
+    \hilite{Advection is a fundamental process in plasma fluid and kinetic theory}
+  \end{center}
+
+\begin{tcolorbox}
+\begin{equation*}
+  \frac{\partial f}{\partial t} + v \frac{\partial f}{\partial x} = 0
+  \quad \longrightarrow\quad f(x-vt)
+ \end{equation*}
+\end{tcolorbox}
+
+\begin{enumerate}
+\item<2->A successful numerical approach is \hilite{not intuitive}
+\item<3->Replacing derivatives by centered-differences is not enough
+\item<4->Problems associated with \hilite{poorly resolved waves}
+\end{enumerate}
+
+\end{frame}
+%------------------------------------------------------------------------
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Canonical wrong way to solve the equation}
+\begin{tcolorbox}
+\begin{equation*}
+\frac{\partial f_p}{\partial t} + v \left( \frac{f_{p+1}-f_{p-1}}{2\Delta x} \right) = 0
+\end{equation*}
+\end{tcolorbox}
+
+\begin{itemize}
+\item<2-> Ansatz for numerical solution (Von Neumann stability analysis):
+\begin{equation*}
+ f_p(t) = e^{i(kp\Delta x - \omega t)}  
+\end{equation*}
+\item<3-> Instead of $\omega = ck$, we get
+\begin{equation*}
+ \omega = c \, \frac{\sin k\Delta x}{\Delta x}
+\end{equation*}
+\item<4-> Obviously there is a problem for $k\Delta x \sim 1$!
+\end{itemize}
+\end{frame}
+%------------------------------------------------------------------------
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Canonical wrong way to solve the equation}
+\begin{tcolorbox}
+\begin{equation*}
+\frac{\partial f_p}{\partial t} + v \left( \frac{f_{p+1}-f_{p-1}}{2\Delta x} \right) = 0
+\end{equation*}
+\end{tcolorbox}
+\begin{itemize}
+\item<1-> Most poorly resolved wave (grid-to-grid) has $\lambda = 2 \Delta x$ or $k\Delta x = \pi$
+\item<2-> \textbf{Phase speed}
+\begin{equation*}
+  v_\mathrm{phase} = \frac{\omega}{k} =  c \, \frac{\sin k\Delta x}{k \Delta x}
+  \longrightarrow 0
+\end{equation*}
+\item<3-> \textbf{Group velocity}
+\begin{equation*}
+  v_\mathrm{group} = \frac{\partial \omega}{\partial k} =  c \, \cos k\Delta x
+  \longrightarrow -c
+\end{equation*}
+\end{itemize}
+\end{frame}
+%------------------------------------------------------------------------
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Solution is to damp poorly-resolved waves}
+\begin{tcolorbox}
+\begin{equation*}
+  \frac{\partial f_p}{\partial t} + v \left( \frac{f_{p+1}-f_{p-1}}{2\Delta x} \right)
+  \onslide<2->{\textcolor{blue}{- v  \, \frac{\Delta x}{2} \left( \frac{f_{p+1}-2f_p+f_{p-1}}{(\Delta x)^2} \right)}} = 0
+\end{equation*}
+\end{tcolorbox}
+\begin{itemize}
+\item<2-> How to deal with poorly-resolved waves?
+\item<3-> Add a second-derivative to smooth the solution (kill poorly-resolved waves)
+\item<4-> Result looks like 1-sided differencing (so-called first-order upwind scheme)
+\begin{equation*}
+  \frac{\partial f_p}{\partial t} + v \left( \frac{f_{p}-f_{p-1}}{\Delta x} \right) = 0
+\end{equation*}
+\item<5->This is the \hilite{1st-order upwind} method
+\end{itemize}
+
+\end{frame}
+%------------------------------------------------------------------------
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Solution is to damp poorly-resolved waves}
+\begin{tcolorbox}
+\begin{equation*}
+  \frac{\partial f_p}{\partial t} + v \left( \frac{f_{p+1}-f_{p-1}}{2\Delta x} \right)
+ \textcolor{blue}{- v  \, \frac{\Delta x}{2} \left( \frac{f_{p+1}-2f_p+f_{p-1}}{(\Delta x)^2} \right)} = 0
+\end{equation*}
+\end{tcolorbox}
+\begin{itemize}
+\item<2-> Poorly-resolved waves now strongly damped
+\item<3-> Total dissipation decreases as $\Delta x$ is reduced
+\item<4-> Dissipation vanishes as $(\Delta x)^3$ for \hilite{3rd-order upwind}
+\item<5-> Dissipation vanishes as $(\Delta x)^5$ for \hilite{5th-order upwind}
+\end{itemize}
+\end{frame}
+%------------------------------------------------------------------------
+%------------------------------------------------------------------------
+\begin{frame}
+  \frametitle{Compact differences}
+ \begin{tcolorbox}
+\begin{equation*}
+  \frac{f_{i+1}-f_{i-1}}{2\Delta x} =
+  \frac{1}{6}
+  \left[ \left(\frac{df}{dx}\right)_{i+1}+4\left(\frac{df}{dx}\right)_{i}
+    + \left(\frac{df}{dx}\right)_{i-1} \right] + {\cal O}(\Delta x^4)
+\end{equation*}
+\end{tcolorbox}
+\begin{itemize}
+\item This is the 4th-order \hilite{compact difference scheme}
+  \item Solve a \hilite{tridiagonal system} for $(df/dx)_i$
+  \item Compact schemes better than FD schemes at intermediate resolution
+  \item Compact 4th-order better than explicit 6th-order at intermediate resolution
+\end{itemize}
+\end{frame}
+%------------------------------------------------------------------------

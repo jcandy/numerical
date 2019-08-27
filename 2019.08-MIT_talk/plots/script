@@ -1,0 +1,56 @@
+python fit_poly3.py 8
+python plot_rbf.py 8
+
+echo "Fitting Legendre spectral ..."
+python fit_leg_spectral.py 1
+python fit_leg_spectral.py 3
+python fit_leg_spectral.py 5
+python fit_leg_spectral.py 7
+python fit_leg_spectral.py 9
+python fit_leg_spectral.py 11
+python fit_leg_spectral.py 13
+python fit_leg_spectral.py 15
+
+echo "Fitting equally-spaced nodes ..."
+python fit_poly.py equal 2
+python fit_poly.py equal 4
+python fit_poly.py equal 6
+python fit_poly.py equal 8
+python fit_poly.py equal 10
+python fit_poly.py equal 12
+python fit_poly.py equal 14
+python fit_poly.py equal 16
+
+echo "Plotting Orthogonal polynomials ..."
+python plot_poly.py 1
+python plot_poly.py 2
+python plot_poly.py 3
+python plot_poly.py 4
+python plot_poly.py 5
+python plot_poly.py 6
+python plot_poly.py 16
+
+echo "Fitting Legendre nodes ..."
+python fit_poly.py leg 2
+python fit_poly.py leg 4
+python fit_poly.py leg 6
+python fit_poly.py leg 8
+python fit_poly.py leg 10
+python fit_poly.py leg 12
+python fit_poly.py leg 14
+python fit_poly.py leg 16
+
+echo "Pitch-angle scattering time evolution ..."
+python pitch.py 16 0
+python pitch.py 16 1
+python pitch.py 16 2
+python pitch.py 16 3
+python pitch.py 16 4
+python pitch.py 16 5
+python pitch.py 16 6
+python pitch.py 16 7
+python pitch.py 16 8
+python pitch.py 16 9
+python pitch.py 16 10
+python pitch.py 16 11
+python pitch.py 16 12

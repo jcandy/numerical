@@ -1,0 +1,54 @@
+\documentclass[11pt,xcolor={dvipsnames},aspectratio=169]{beamer}
+\usepackage[serif]{atombeamer}
+\usepackage{xspace}
+\usepackage{amsmath}
+%\usepackage{minted}
+
+\graphicspath{%
+%  {../../2018.07-SciDAC_PI/figures/}%
+%  {../../2019.03-GTC_San_Jose/figures/}%
+%  {../../../ESL/manuscripts/2015.11-RBF_APS/figures/}%
+%  {../../../ESL/2015.06-RBF_simple/RBF_JC/gaussian_rbf/fit/}%
+  {extra/}%
+  {plots/}%
+}
+
+\title{Useful Numerical Methods for Modern Computation}
+
+\author{\textbf{J.~Candy}}
+
+\date{%
+  {\small Presented at the}\\
+  {\bf CPS-FR 2019 (MIT)\\
+    Cambridge, MA\\
+    26 August 2019}}
+
+\footlabel{Candy/MIT/August~2019}
+  
+\begin{document}
+\gamaketitle
+\setgabody
+
+\setbeamercolor{banner}{bg=yellow}
+
+\input macros
+
+\input intro
+\input ga
+\input integration
+\input poly
+\input diff
+\input advect
+\input rbf
+\input mfs
+
+%-------------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{}
+  \centering
+  \vspace{6mm}
+  \includegraphics[width=3.5in]{figures/fin.jpg}
+\end{frame}
+
+\end{document}
